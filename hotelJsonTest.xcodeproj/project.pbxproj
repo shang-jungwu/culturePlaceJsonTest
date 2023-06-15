@@ -14,6 +14,7 @@
 		49147A572A39F14500580467 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49147A552A39F14500580467 /* LaunchScreen.storyboard */; };
 		49147A5F2A39F23F00580467 /* TainanPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49147A5E2A39F23F00580467 /* TainanPlace.swift */; };
 		49BEB86F2A3A122700D6F7F1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BEB86E2A3A122700D6F7F1 /* ViewController.swift */; };
+		49BEB8732A3B5BBB00D6F7F1 /* TainanRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BEB8722A3B5BBA00D6F7F1 /* TainanRestaurant.swift */; };
 		49C08E452A39FF0E00859D46 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C08E442A39FF0E00859D46 /* TableViewController.swift */; };
 		49C08E472A39FF6100859D46 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C08E462A39FF6100859D46 /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -28,6 +29,7 @@
 		49147A582A39F14500580467 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49147A5E2A39F23F00580467 /* TainanPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TainanPlace.swift; sourceTree = "<group>"; };
 		49BEB86E2A3A122700D6F7F1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		49BEB8722A3B5BBA00D6F7F1 /* TainanRestaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TainanRestaurant.swift; sourceTree = "<group>"; };
 		49C08E442A39FF0E00859D46 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		49C08E462A39FF6100859D46 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,6 +67,7 @@
 				49147A4A2A39F13E00580467 /* AppDelegate.swift */,
 				49147A4C2A39F13E00580467 /* SceneDelegate.swift */,
 				49147A5E2A39F23F00580467 /* TainanPlace.swift */,
+				49BEB8722A3B5BBA00D6F7F1 /* TainanRestaurant.swift */,
 				49BEB86E2A3A122700D6F7F1 /* ViewController.swift */,
 				49C08E442A39FF0E00859D46 /* TableViewController.swift */,
 				49C08E462A39FF6100859D46 /* TableViewCell.swift */,
@@ -149,6 +152,7 @@
 			files = (
 				49BEB86F2A3A122700D6F7F1 /* ViewController.swift in Sources */,
 				49147A4B2A39F13E00580467 /* AppDelegate.swift in Sources */,
+				49BEB8732A3B5BBB00D6F7F1 /* TainanRestaurant.swift in Sources */,
 				49147A5F2A39F23F00580467 /* TainanPlace.swift in Sources */,
 				49C08E472A39FF6100859D46 /* TableViewCell.swift in Sources */,
 				49C08E452A39FF0E00859D46 /* TableViewController.swift in Sources */,

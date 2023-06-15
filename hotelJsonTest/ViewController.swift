@@ -20,6 +20,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
 
     var allCulturalCenters = [CulturalCenter]()
+    var allRestaurants = [Restaurant]()
 
     func fetchPlaces() {
         let urlStr = "https://raw.githubusercontent.com/shang-jungwu/json/main/tainan"
@@ -32,7 +33,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         DispatchQueue.main.async {
                             for i in 0..<self.allCulturalCenters.count {
                                 
-                                print(self.allCulturalCenters[i].name)
+                                //print(self.allCulturalCenters[i].name)
                             }
                         }
                     } catch  {
@@ -43,6 +44,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
 
     }
+
+    func fetchRestaurants() {
+        let urlStr = "https://raw.githubusercontent.com/shang-jungwu/json/main/tainan_dining"
+        if let url = URL(string: urlStr) {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let data = data{
+                    let decoder = JSONDecoder()
+                    do {
+                        self.allRestaurants = try decoder.decode([Restaurant].self, from: data)
+                        DispatchQueue.main.async {
+                            for i in 0..<self.allRestaurants.count {
+
+                                //print(self.allRestaurants[i].name)
+                            }
+                        }
+                    } catch  {
+                        print(error)
+                    }
+                }
+            }.resume()
+        }
+
+    }
+    
 
 
     override func viewDidLoad() {
@@ -59,14 +84,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 toolBar.sizeToFit()
         //加入toolbar的按鈕跟中間的空白
         let doneButton = UIBarButtonItem(title: "確認", style: .plain, target: self, action: #selector(submit))
-                //將doneButton設定跟pickerView一樣的tag，submit方法裡可以比對要顯示哪個textField的text
-
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancel))
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         //設定toolBar可以使用
         toolBar.isUserInteractionEnabled = true
 
+        fetchRestaurants()
+        fetchPlaces() 
 
         districtTxt.inputAccessoryView = toolBar
 
