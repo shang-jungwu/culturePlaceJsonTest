@@ -21,6 +21,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     var allCulturalCenters = [CulturalCenter]()
     var allRestaurants = [Restaurant]()
+    var allHostels = [Hotel]()
 
     func fetchPlaces() {
         let urlStr = "https://raw.githubusercontent.com/shang-jungwu/json/main/tainan"
@@ -67,6 +68,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
 
     }
+
+    func fetchHotels() {
+        let urlStr = "https://raw.githubusercontent.com/shang-jungwu/json/main/tainan_hotel"
+        if let url = URL(string: urlStr) {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let data = data{
+                    let decoder = JSONDecoder()
+                    do {
+                        self.allHostels = try decoder.decode([Hotel].self, from: data)
+                        DispatchQueue.main.async {
+                            for i in 0..<self.allHostels.count {
+
+                                //print(self.allHostels[i].name)
+                            }
+                        }
+                    } catch  {
+                        print(error)
+                    }
+                }
+            }.resume()
+        }
+
+    }
+
     
 
 
@@ -91,7 +116,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         toolBar.isUserInteractionEnabled = true
 
         fetchRestaurants()
-        fetchPlaces() 
+        fetchPlaces()
+        fetchHotels()
 
         districtTxt.inputAccessoryView = toolBar
 
