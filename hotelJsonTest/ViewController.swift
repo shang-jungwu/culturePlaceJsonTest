@@ -23,11 +23,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         "新營","鹽水","白河","柳營","後壁","東山","麻豆","下營","六甲","官田","大內","佳里","學甲","西港","七股","將軍","北門","新化","新市","善化","安定","山上","玉井","楠西","南化","左鎮","仁德","歸仁","關廟","龍崎","永康","東區","南區","中西區","北區","安南","安平"
     ]
 
-
-    var allCulturalCenters = [TainanPlaces]()
-    var allRestaurants = [TainanPlaces]()
-    var allHostels = [TainanPlaces]()
-
     var allDataTainan = [[TainanPlaces]]()
 
 
