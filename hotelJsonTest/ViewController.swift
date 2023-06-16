@@ -6,6 +6,11 @@
 //
 
 import UIKit
+struct allData {
+    var touristSpots: [TainanPlaces]
+    var hotels: [TainanPlaces]
+    var restaurants: [TainanPlaces]
+}
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
@@ -19,23 +24,28 @@ class ViewController: UIViewController, UITextFieldDelegate {
     ]
 
 
-    var allCulturalCenters = [CulturalCenter]()
-    var allRestaurants = [Restaurant]()
-    var allHostels = [Hotel]()
+    var allCulturalCenters = [TainanPlaces]()
+    var allRestaurants = [TainanPlaces]()
+    var allHostels = [TainanPlaces]()
 
-    func fetchPlaces() {
-        let urlStr = "https://raw.githubusercontent.com/shang-jungwu/json/main/tainan"
-        if let url = URL(string: urlStr) {
+    var allDataTainan = [[TainanPlaces]]()
+
+
+    func fetchTest(urlRawJson: String, index: Int) {
+        if let url = URL(string: urlRawJson) {
             URLSession.shared.dataTask(with: url) { data, response, error in
                 if let data = data{
                     let decoder = JSONDecoder()
                     do {
-                        self.allCulturalCenters = try decoder.decode([CulturalCenter].self, from: data)
-                        DispatchQueue.main.async {
-                            for i in 0..<self.allCulturalCenters.count {
-                                
-                                //print(self.allCulturalCenters[i].name)
+                        let decodeData = try decoder.decode([TainanPlaces].self, from: data)
+                        DispatchQueue.main.async { [self] in
+                            allDataTainan.append(decodeData)
+                            allDataTainan.sort {
+                                $0.count < $1.count
                             }
+                            print(allDataTainan.map({
+                                $0.count
+                            }))
                         }
                     } catch  {
                         print(error)
@@ -45,55 +55,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
 
     }
-
-    func fetchRestaurants() {
-        let urlStr = "https://raw.githubusercontent.com/shang-jungwu/json/main/tainan_dining"
-        if let url = URL(string: urlStr) {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                if let data = data{
-                    let decoder = JSONDecoder()
-                    do {
-                        self.allRestaurants = try decoder.decode([Restaurant].self, from: data)
-                        DispatchQueue.main.async {
-                            for i in 0..<self.allRestaurants.count {
-
-                                //print(self.allRestaurants[i].name)
-                            }
-                        }
-                    } catch  {
-                        print(error)
-                    }
-                }
-            }.resume()
-        }
-
-    }
-
-    func fetchHotels() {
-        let urlStr = "https://raw.githubusercontent.com/shang-jungwu/json/main/tainan_hotel"
-        if let url = URL(string: urlStr) {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                if let data = data{
-                    let decoder = JSONDecoder()
-                    do {
-                        self.allHostels = try decoder.decode([Hotel].self, from: data)
-                        DispatchQueue.main.async {
-                            for i in 0..<self.allHostels.count {
-
-                                //print(self.allHostels[i].name)
-                            }
-                        }
-                    } catch  {
-                        print(error)
-                    }
-                }
-            }.resume()
-        }
-
-    }
-
-    
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,14 +73,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancel))
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+
         //設定toolBar可以使用
         toolBar.isUserInteractionEnabled = true
-
-        fetchRestaurants()
-        fetchPlaces()
-        fetchHotels()
-
         districtTxt.inputAccessoryView = toolBar
+
+
+        fetchTest(urlRawJson: "https://raw.githubusercontent.com/shang-jungwu/json/main/tainan", index: 0)
+        fetchTest(urlRawJson: "https://raw.githubusercontent.com/shang-jungwu/json/main/tainan_hotels", index: 1)
+        fetchTest(urlRawJson: "https://raw.githubusercontent.com/shang-jungwu/json/main/tainan_dining", index: 2)
 
     }
 

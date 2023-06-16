@@ -9,7 +9,7 @@ import UIKit
 
 class TableViewController: UITableViewController {
 
-    var culturalCenters = [CulturalCenter]()
+    var culturalCenters = [TainanPlaces]()
 
 
     override func viewDidLoad() {

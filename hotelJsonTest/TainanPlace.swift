@@ -7,17 +7,14 @@
 
 import Foundation
 
-struct CulturalCenter: Codable {
-    //let id: Int
+struct TainanPlaces: Codable {
     let name: String
-    //let summary: String
-    //let introduction: String
-    let openTime: String
-    let district: String
+    let openTime: String?
+    let district: String?
     let address: String
-    let tel: String
-    let lat: Double //緯度
-    let long: Double //經度
+    let tel: String?
+    let lat: Double?
+    let long: Double?
 
     enum CodingKeys: String, CodingKey {
         case name
